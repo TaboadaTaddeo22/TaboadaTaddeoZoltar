@@ -22,15 +22,22 @@ public class FrameZoltar extends javax.swing.JFrame {
      */
     public FrameZoltar() {
         initComponents();
-        s = new Server();
-        c = new Client();
+        modificaTextArea();
+        s = new Server(txaZoltar);
+        c = new Client(txaZoltar);
         gM = new GestoreMessaggi(c);
+    }
+    
+    private void modificaTextArea() {
+        txaZoltar.setEditable(false);
+        txaZoltar.setLineWrap(true);
+        txaZoltar.setWrapStyleWord(true);
     }
     
     public void iniziaZoltar() {
         new Thread(() -> {
             try {
-                s.zoltar(txaZoltar);
+                s.avvia();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -171,6 +178,7 @@ public class FrameZoltar extends javax.swing.JFrame {
 
     private void btnInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputActionPerformed
         gM.inputUtente(txtInput.getText());
+        txtInput.setText("");
     }//GEN-LAST:event_btnInputActionPerformed
 
     /**
