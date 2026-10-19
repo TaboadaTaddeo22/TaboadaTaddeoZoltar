@@ -19,7 +19,7 @@ public class TaboadaTaddeoZoltar {
         FrameZoltar frmZoltar = new FrameZoltar();
         frmZoltar.setExtendedState(MAXIMIZED_BOTH);
         frmZoltar.setVisible(true);
-        
+        frmZoltar.iniziaZoltar();
     }
     
 }

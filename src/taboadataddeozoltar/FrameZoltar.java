@@ -4,6 +4,8 @@
  */
 package taboadataddeozoltar;
 
+import java.io.IOException;
+
 /**
  *
  * @author tadde
@@ -11,12 +13,35 @@ package taboadataddeozoltar;
 public class FrameZoltar extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrameZoltar.class.getName());
+    private Server s;
+    private Client c;
+    private GestoreMessaggi gM;
 
     /**
      * Creates new form FrameZoltar
      */
     public FrameZoltar() {
         initComponents();
+        s = new Server();
+        c = new Client();
+        gM = new GestoreMessaggi(c);
+    }
+    
+    public void iniziaZoltar() {
+        new Thread(() -> {
+            try {
+                s.zoltar(txaZoltar);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }).start();
+        new Thread(() -> {
+            try {
+                c.utente();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }).start();
     }
 
     /**
@@ -36,6 +61,9 @@ public class FrameZoltar extends javax.swing.JFrame {
         pnlZoltar = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txaZoltar = new javax.swing.JTextArea();
+        pnlInput = new javax.swing.JPanel();
+        txtInput = new javax.swing.JTextField();
+        btnInput = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Zoltar");
@@ -104,11 +132,35 @@ public class FrameZoltar extends javax.swing.JFrame {
         pnlZoltar.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         pnlZoltar.setLayout(new java.awt.BorderLayout());
 
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(400, 86));
+
         txaZoltar.setColumns(20);
         txaZoltar.setRows(5);
+        txaZoltar.setFocusable(false);
         jScrollPane1.setViewportView(txaZoltar);
 
         pnlZoltar.add(jScrollPane1, java.awt.BorderLayout.LINE_END);
+
+        pnlInput.setBackground(new java.awt.Color(153, 102, 255));
+        pnlInput.setBorder(javax.swing.BorderFactory.createEmptyBorder(100, 20, 100, 20));
+        pnlInput.setLayout(new java.awt.GridLayout(2, 1, 50, 50));
+
+        txtInput.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        txtInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtInput.setText("Inserisci il messaggio");
+        txtInput.setSelectionStart(0);
+        pnlInput.add(txtInput);
+
+        btnInput.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnInput.setText("Invia messaggio");
+        btnInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInputActionPerformed(evt);
+            }
+        });
+        pnlInput.add(btnInput);
+
+        pnlZoltar.add(pnlInput, java.awt.BorderLayout.CENTER);
 
         pnlCentro.add(pnlZoltar, java.awt.BorderLayout.CENTER);
 
@@ -117,39 +169,29 @@ public class FrameZoltar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputActionPerformed
+        gM.inputUtente(txtInput.getText());
+    }//GEN-LAST:event_btnInputActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new FrameZoltar().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnInput;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblInfo;
     private javax.swing.JLabel lblTitolo;
     private javax.swing.JPanel pnlCentro;
     private javax.swing.JPanel pnlInfo;
+    private javax.swing.JPanel pnlInput;
     private javax.swing.JPanel pnlTitolo;
     private javax.swing.JPanel pnlZoltar;
     private javax.swing.JTextArea txaZoltar;
+    private javax.swing.JTextField txtInput;
     // End of variables declaration//GEN-END:variables
 }

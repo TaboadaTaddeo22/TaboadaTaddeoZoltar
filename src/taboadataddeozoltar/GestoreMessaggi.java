@@ -10,12 +10,37 @@ package taboadataddeozoltar;
  */
 public class GestoreMessaggi {
     // Attributi
-    private String tipoRichiesta;
-    private String richiesta;
+    private Client c;
     
-    public GestoreMessaggi(String messaggio) {
+    public GestoreMessaggi(Client c) {
+        this.c = c;
+    }
+    
+    public void inputUtente(String messaggio) {
         String[] m = messaggio.split("_");
-        tipoRichiesta = m[0];
-        richiesta = m[1];
+        String tipoRichiesta = m[0];
+        String richiesta = m[1];
+        
+        if (m.length > 1 && tipoRichiesta.equals("PER")) {
+            personalita();
+        } else if (m.length > 1 && tipoRichiesta.equals("DOM")) {
+            domanda();
+        } else if (m[0].equals("HELP")) {
+            help();
+        } else {
+            return;
+        }
+    }
+    
+    public void personalita() {
+        
+    }
+    
+    public void domanda() {
+        
+    }
+    
+    public void help() {
+        
     }
 }
