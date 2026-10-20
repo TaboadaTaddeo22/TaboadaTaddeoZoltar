@@ -22,16 +22,24 @@ public class FrameZoltar extends javax.swing.JFrame {
      */
     public FrameZoltar() {
         initComponents();
-        modificaTextArea();
         s = new Server(txaZoltar);
         c = new Client(txaZoltar);
         gM = new GestoreMessaggi(c);
+        modificaTextArea();
+        modificaComboBox();
     }
     
     private void modificaTextArea() {
         txaZoltar.setEditable(false);
         txaZoltar.setLineWrap(true);
         txaZoltar.setWrapStyleWord(true);
+    }
+    
+    private void modificaComboBox() {
+        cmbPersonalita.addItem("Zoltar");
+        cmbPersonalita.addItem("Eldego");
+        cmbPersonalita.addItem("Sindaco");
+        cmbPersonalita.setSelectedIndex(0);
     }
     
     public void iniziaZoltar() {
@@ -65,10 +73,13 @@ public class FrameZoltar extends javax.swing.JFrame {
         pnlCentro = new javax.swing.JPanel();
         pnlInfo = new javax.swing.JPanel();
         lblInfo = new javax.swing.JLabel();
+        pnlImmagine = new javax.swing.JPanel();
         pnlZoltar = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txaZoltar = new javax.swing.JTextArea();
         pnlInput = new javax.swing.JPanel();
+        lblPersonalita = new javax.swing.JLabel();
+        cmbPersonalita = new javax.swing.JComboBox<>();
         txtInput = new javax.swing.JTextField();
         btnInput = new javax.swing.JButton();
 
@@ -112,26 +123,27 @@ public class FrameZoltar extends javax.swing.JFrame {
         pnlCentro.setLayout(new java.awt.BorderLayout());
 
         pnlInfo.setBackground(new java.awt.Color(153, 102, 255));
+        pnlInfo.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        pnlInfo.setLayout(new java.awt.BorderLayout());
 
-        lblInfo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblInfo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblInfo.setText("Comunica con Zoltar:");
+        pnlInfo.add(lblInfo, java.awt.BorderLayout.CENTER);
 
-        javax.swing.GroupLayout pnlInfoLayout = new javax.swing.GroupLayout(pnlInfo);
-        pnlInfo.setLayout(pnlInfoLayout);
-        pnlInfoLayout.setHorizontalGroup(
-            pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInfoLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(lblInfo)
-                .addContainerGap(799, Short.MAX_VALUE))
+        pnlImmagine.setPreferredSize(new java.awt.Dimension(200, 200));
+
+        javax.swing.GroupLayout pnlImmagineLayout = new javax.swing.GroupLayout(pnlImmagine);
+        pnlImmagine.setLayout(pnlImmagineLayout);
+        pnlImmagineLayout.setHorizontalGroup(
+            pnlImmagineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
         );
-        pnlInfoLayout.setVerticalGroup(
-            pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInfoLayout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
-                .addComponent(lblInfo)
-                .addGap(35, 35, 35))
+        pnlImmagineLayout.setVerticalGroup(
+            pnlImmagineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
         );
+
+        pnlInfo.add(pnlImmagine, java.awt.BorderLayout.EAST);
 
         pnlCentro.add(pnlInfo, java.awt.BorderLayout.PAGE_START);
 
@@ -139,9 +151,11 @@ public class FrameZoltar extends javax.swing.JFrame {
         pnlZoltar.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         pnlZoltar.setLayout(new java.awt.BorderLayout());
 
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(400, 86));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(700, 86));
 
+        txaZoltar.setBackground(new java.awt.Color(216, 178, 255));
         txaZoltar.setColumns(20);
+        txaZoltar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txaZoltar.setRows(5);
         txaZoltar.setFocusable(false);
         jScrollPane1.setViewportView(txaZoltar);
@@ -149,15 +163,30 @@ public class FrameZoltar extends javax.swing.JFrame {
         pnlZoltar.add(jScrollPane1, java.awt.BorderLayout.LINE_END);
 
         pnlInput.setBackground(new java.awt.Color(153, 102, 255));
-        pnlInput.setBorder(javax.swing.BorderFactory.createEmptyBorder(100, 20, 100, 20));
-        pnlInput.setLayout(new java.awt.GridLayout(2, 1, 50, 50));
+        pnlInput.setBorder(javax.swing.BorderFactory.createEmptyBorder(50, 20, 50, 20));
+        pnlInput.setLayout(new java.awt.GridLayout(4, 1, 50, 50));
 
+        lblPersonalita.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblPersonalita.setText("Scegli la Personalità:");
+        pnlInput.add(lblPersonalita);
+
+        cmbPersonalita.setBackground(new java.awt.Color(229, 204, 255));
+        cmbPersonalita.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        cmbPersonalita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPersonalitaActionPerformed(evt);
+            }
+        });
+        pnlInput.add(cmbPersonalita);
+
+        txtInput.setBackground(new java.awt.Color(228, 204, 255));
         txtInput.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         txtInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtInput.setText("Inserisci il messaggio");
         txtInput.setSelectionStart(0);
         pnlInput.add(txtInput);
 
+        btnInput.setBackground(new java.awt.Color(204, 153, 255));
         btnInput.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnInput.setText("Invia messaggio");
         btnInput.addActionListener(new java.awt.event.ActionListener() {
@@ -177,9 +206,13 @@ public class FrameZoltar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputActionPerformed
-        gM.inputUtente(txtInput.getText());
+        gM.messaggioUtente(txtInput.getText());
         txtInput.setText("");
     }//GEN-LAST:event_btnInputActionPerformed
+
+    private void cmbPersonalitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPersonalitaActionPerformed
+        gM.personalita((String) cmbPersonalita.getSelectedItem());
+    }//GEN-LAST:event_cmbPersonalitaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,10 +224,13 @@ public class FrameZoltar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInput;
+    private javax.swing.JComboBox<String> cmbPersonalita;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblInfo;
+    private javax.swing.JLabel lblPersonalita;
     private javax.swing.JLabel lblTitolo;
     private javax.swing.JPanel pnlCentro;
+    private javax.swing.JPanel pnlImmagine;
     private javax.swing.JPanel pnlInfo;
     private javax.swing.JPanel pnlInput;
     private javax.swing.JPanel pnlTitolo;

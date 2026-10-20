@@ -16,6 +16,9 @@ public class Sindaco extends Personalita {
             "Il mio nome e' Taddeo Taboada",
             "Secondo me, ho ragione io",
             "Malmo e' la terza citta' svedese per abitanti",
+            "Vincere e vinceremo",
+            "Devi votarmi nelle prossime elezioni",
+            "Prima ero superbo, ora sono perfetto",
             "Adios"
         };
     }

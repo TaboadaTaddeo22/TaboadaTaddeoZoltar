@@ -16,6 +16,9 @@ public class Eldego extends Personalita {
             "Era forte Maradona",
             "Mi compri una Monster?",
             "Il Napoli vincera' la Serie A",
+            "Ho il diabete",
+            "67",
+            "Ti chiamo la Camorra se vuoi",
             "Kitestramuort"
         };
     }

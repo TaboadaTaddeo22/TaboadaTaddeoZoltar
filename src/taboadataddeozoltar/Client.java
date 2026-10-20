@@ -7,7 +7,6 @@ package taboadataddeozoltar;
 
 import java.io.*;
 import java.net.*;
-import java.util.*;
 import javax.swing.JTextArea;
 /**
  *
@@ -28,17 +27,16 @@ public class Client {
         out = new DataOutputStream(socket.getOutputStream());
  
         while (true) {
-            mostra(in.readUTF());
+            mostra(in.readUTF() + "\n");
         }
     }
 
     public void mostra(String testo) {
-        output.append(testo + "\n");
+        output.append(testo + "\n" + "\n");
     }
     
     public void invia(String messaggio) {
         if (out == null) {
-            mostra("Non sono collegato al server.");
             return;
         }
         try {

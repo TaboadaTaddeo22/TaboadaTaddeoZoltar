@@ -6,7 +6,6 @@ package taboadataddeozoltar;
 
 import java.io.*;
 import java.net.*;
-import java.util.*;
 import javax.swing.JTextArea;
 
 /**
@@ -45,17 +44,10 @@ public class Server {
             + "PER_{personalita'} per scegliere con chi parlare\n"
             + "DOM_{domanda} per scrivere la tua domanda\n"
             + "HELP per ricevere informazioni sul programma");
-        
-        mostra("Ciao sono Zoltar, l'oracolo che risponderà ad ogni tua domanda.\n"
-            + "Puoi utilizzare i seguenti comandi:\n"
-            + "PER_{personalita'} per scegliere con chi parlare\n"
-            + "DOM_{domanda} per scrivere la tua domanda\n"
-            + "HELP per ricevere informazioni sul programma");
  
         while (true) {
             String richiesta = in.readUTF();
             out.writeUTF(elabora(richiesta));
-            mostra(elabora(richiesta));
         }
     }
     

@@ -44,6 +44,11 @@ public class GestoreMessaggi {
         }
     }
     
+    public void messaggioUtente(String messaggio) {
+        c.mostra("Tu: " + messaggio);
+        domanda(messaggio);
+    }
+    
     public void personalita(String nome) {
         if (nome.isEmpty()) {
             c.mostra("Specifica la personalita', ad esempio PER_Eldego");

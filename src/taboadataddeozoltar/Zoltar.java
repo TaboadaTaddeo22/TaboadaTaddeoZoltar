@@ -16,6 +16,9 @@ public class Zoltar extends Personalita {
             "Non so come aiutarti",
             "Vuoi davvero parlare con me?",
             "Ti consiglierei di scegliere una personalita' diversa",
+            "Allora, te lo dico brevemente, sei spacciato",
+            "Secondo me ce la puoi fare",
+            "...",
             "Arrivederci"
         };
     }
