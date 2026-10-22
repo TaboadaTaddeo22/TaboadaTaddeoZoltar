@@ -40,9 +40,9 @@ public class Server {
         DataOutputStream out = new DataOutputStream(client.getOutputStream());
  
         out.writeUTF("Ciao sono Zoltar, l'oracolo che risponderà ad ogni tua domanda.\n"
-            + "Puoi utilizzare i seguenti comandi:\n"
-            + "PER_{personalita'} per scegliere con chi parlare\n"
-            + "DOM_{domanda} per scrivere la tua domanda\n"
+            + "Puoi fare le seguenti azioni:\n"
+            + "Scegliere la personalita' con cui parlare\n"
+            + "Scrivere la tua domanda\n"
             + "HELP per ricevere informazioni sul programma");
  
         while (true) {

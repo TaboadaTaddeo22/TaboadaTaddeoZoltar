@@ -59,7 +59,7 @@ public class GestoreMessaggi {
     
     public void domanda(String testo) {
         if (testo.isEmpty()) {
-            c.mostra("Scrivi la domanda, ad esempio DOM_Ciao, Come stai?");
+            c.mostra("Scrivi la domanda, ad esempio 'Ciao, Come stai?'");
             return;
         }
         c.invia("DOM_" + testo);
@@ -67,10 +67,10 @@ public class GestoreMessaggi {
     
     public void help() {
         c.mostra("Personalita' disponibili: \n"
-                + "PER_Zoltar  : la personalita' di default\n"
-                + "PER_Eldego  : non ha bisogno di presentazioni\n"
-                + "PER_Sindaco : il Sindaco di Malmo\n"
-                + "DOM_{domanda} : fai una domanda alla personalita' scelta\n"
+                + "Zoltar  : la personalita' di default\n"
+                + "Eldego  : non ha bisogno di presentazioni\n"
+                + "Sindaco : il Sindaco di Malmo\n"
+                + "Textbox 'Inserisci un messaggio' : fai una domanda alla personalita' scelta\n"
                 + "HELP : mostra questo messaggio");
     }
 }

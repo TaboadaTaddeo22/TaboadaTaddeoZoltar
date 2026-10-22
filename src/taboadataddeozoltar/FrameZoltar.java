@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 public class FrameZoltar extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrameZoltar.class.getName());
+    private javax.swing.Timer timerGif;
     private Server s;
     private Client c;
     private GestoreMessaggi gM;
@@ -43,6 +44,38 @@ public class FrameZoltar extends javax.swing.JFrame {
         cmbPersonalita.addItem("Sindaco");
         cmbPersonalita.setSelectedIndex(0);
         impostaImmagine(0);
+    }
+    
+    private void animaImmagine() {
+        ImageIcon immagine = null;
+        switch (cmbPersonalita.getSelectedIndex()) {
+            case 0:
+                immagine = new ImageIcon(getClass().getResource("zoltar_quadrato.gif"));
+                break;
+            case 1:
+                immagine = new ImageIcon(getClass().getResource("eldego_quadrato.gif"));
+                break;
+            case 2:
+                immagine = new ImageIcon(getClass().getResource("sindaco_quadrato.gif"));
+                break;
+            default:
+                return;
+        }
+
+        // Ferma un'eventuale animazione precedente
+        if (timerGif != null) {
+            timerGif.stop();
+        }
+        
+        lblImmagine.setIcon(immagine);
+
+        // Durata dell'animazione in millisecondi
+        timerGif = new javax.swing.Timer(2500, e -> {
+            impostaImmagine(cmbPersonalita.getSelectedIndex());
+        });
+
+        timerGif.setRepeats(false);
+        timerGif.start();
     }
     
     private void impostaImmagine(int indice) {
@@ -123,7 +156,7 @@ public class FrameZoltar extends javax.swing.JFrame {
         pnlTitolo.setMaximumSize(new java.awt.Dimension(32767, 100));
         pnlTitolo.setPreferredSize(new java.awt.Dimension(1000, 100));
 
-        lblTitolo.setFont(new java.awt.Font("Segoe UI Black", 2, 60)); // NOI18N
+        lblTitolo.setFont(new java.awt.Font("Snap ITC", 3, 80)); // NOI18N
         lblTitolo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitolo.setText("Zoltar");
 
@@ -131,7 +164,7 @@ public class FrameZoltar extends javax.swing.JFrame {
         pnlTitolo.setLayout(pnlTitoloLayout);
         pnlTitoloLayout.setHorizontalGroup(
             pnlTitoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGap(0, 1039, Short.MAX_VALUE)
             .addGroup(pnlTitoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlTitoloLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -140,12 +173,12 @@ public class FrameZoltar extends javax.swing.JFrame {
         );
         pnlTitoloLayout.setVerticalGroup(
             pnlTitoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 104, Short.MAX_VALUE)
             .addGroup(pnlTitoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlTitoloLayout.createSequentialGroup()
-                    .addGap(0, 9, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(lblTitolo)
-                    .addGap(0, 10, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         getContentPane().add(pnlTitolo, java.awt.BorderLayout.PAGE_START);
@@ -157,10 +190,11 @@ public class FrameZoltar extends javax.swing.JFrame {
         pnlInfo.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         pnlInfo.setLayout(new java.awt.BorderLayout());
 
-        lblInfo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblInfo.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         lblInfo.setText("Comunica con Zoltar:");
         pnlInfo.add(lblInfo, java.awt.BorderLayout.CENTER);
 
+        pnlImmagine.setMinimumSize(new java.awt.Dimension(200, 200));
         pnlImmagine.setPreferredSize(new java.awt.Dimension(200, 200));
         pnlImmagine.setLayout(new java.awt.BorderLayout());
 
@@ -241,6 +275,7 @@ public class FrameZoltar extends javax.swing.JFrame {
 
     private void btnInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputActionPerformed
         gM.messaggioUtente(txtInput.getText());
+        animaImmagine();
         txtInput.setText("");
     }//GEN-LAST:event_btnInputActionPerformed
 
