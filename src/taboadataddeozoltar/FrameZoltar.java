@@ -4,7 +4,9 @@
  */
 package taboadataddeozoltar;
 
+import java.awt.Image;
 import java.io.IOException;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -40,6 +42,33 @@ public class FrameZoltar extends javax.swing.JFrame {
         cmbPersonalita.addItem("Eldego");
         cmbPersonalita.addItem("Sindaco");
         cmbPersonalita.setSelectedIndex(0);
+        impostaImmagine(0);
+    }
+    
+    private void impostaImmagine(int indice) {
+        ImageIcon immagine = null;
+        switch (indice) {
+            case 0:
+                immagine = new ImageIcon(getClass().getResource("zoltar_quadrato.png"));
+                break;
+            case 1:
+                immagine = new ImageIcon(getClass().getResource("eldego_quadrato.png"));
+                break;
+            case 2:
+                immagine = new ImageIcon(getClass().getResource("sindaco_quadrato.png"));
+                break;
+            default:
+                break;
+        }
+        
+        Image img = immagine.getImage();
+        Image ridimensionata = img.getScaledInstance(
+            lblImmagine.getWidth(),
+            lblImmagine.getHeight(),
+            Image.SCALE_SMOOTH
+        );
+
+        lblImmagine.setIcon(new ImageIcon(ridimensionata));
     }
     
     public void iniziaZoltar() {
@@ -74,6 +103,7 @@ public class FrameZoltar extends javax.swing.JFrame {
         pnlInfo = new javax.swing.JPanel();
         lblInfo = new javax.swing.JLabel();
         pnlImmagine = new javax.swing.JPanel();
+        lblImmagine = new javax.swing.JLabel();
         pnlZoltar = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txaZoltar = new javax.swing.JTextArea();
@@ -82,6 +112,7 @@ public class FrameZoltar extends javax.swing.JFrame {
         cmbPersonalita = new javax.swing.JComboBox<>();
         txtInput = new javax.swing.JTextField();
         btnInput = new javax.swing.JButton();
+        btnHelp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Zoltar");
@@ -131,17 +162,10 @@ public class FrameZoltar extends javax.swing.JFrame {
         pnlInfo.add(lblInfo, java.awt.BorderLayout.CENTER);
 
         pnlImmagine.setPreferredSize(new java.awt.Dimension(200, 200));
+        pnlImmagine.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout pnlImmagineLayout = new javax.swing.GroupLayout(pnlImmagine);
-        pnlImmagine.setLayout(pnlImmagineLayout);
-        pnlImmagineLayout.setHorizontalGroup(
-            pnlImmagineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
-        );
-        pnlImmagineLayout.setVerticalGroup(
-            pnlImmagineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
-        );
+        lblImmagine.setText("jLabel1");
+        pnlImmagine.add(lblImmagine, java.awt.BorderLayout.CENTER);
 
         pnlInfo.add(pnlImmagine, java.awt.BorderLayout.EAST);
 
@@ -164,7 +188,7 @@ public class FrameZoltar extends javax.swing.JFrame {
 
         pnlInput.setBackground(new java.awt.Color(153, 102, 255));
         pnlInput.setBorder(javax.swing.BorderFactory.createEmptyBorder(50, 20, 50, 20));
-        pnlInput.setLayout(new java.awt.GridLayout(4, 1, 50, 50));
+        pnlInput.setLayout(new java.awt.GridLayout(5, 1, 50, 50));
 
         lblPersonalita.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblPersonalita.setText("Scegli la Personalità:");
@@ -196,6 +220,16 @@ public class FrameZoltar extends javax.swing.JFrame {
         });
         pnlInput.add(btnInput);
 
+        btnHelp.setBackground(new java.awt.Color(204, 153, 255));
+        btnHelp.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnHelp.setText("Help");
+        btnHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHelpActionPerformed(evt);
+            }
+        });
+        pnlInput.add(btnHelp);
+
         pnlZoltar.add(pnlInput, java.awt.BorderLayout.CENTER);
 
         pnlCentro.add(pnlZoltar, java.awt.BorderLayout.CENTER);
@@ -212,7 +246,12 @@ public class FrameZoltar extends javax.swing.JFrame {
 
     private void cmbPersonalitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPersonalitaActionPerformed
         gM.personalita((String) cmbPersonalita.getSelectedItem());
+        impostaImmagine(cmbPersonalita.getSelectedIndex());
     }//GEN-LAST:event_cmbPersonalitaActionPerformed
+
+    private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
+        gM.help();
+    }//GEN-LAST:event_btnHelpActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,9 +262,11 @@ public class FrameZoltar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHelp;
     private javax.swing.JButton btnInput;
     private javax.swing.JComboBox<String> cmbPersonalita;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblImmagine;
     private javax.swing.JLabel lblInfo;
     private javax.swing.JLabel lblPersonalita;
     private javax.swing.JLabel lblTitolo;
