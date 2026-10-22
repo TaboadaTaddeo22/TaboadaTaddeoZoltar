@@ -10,6 +10,7 @@ package taboadataddeozoltar;
  */
 public class Zoltar extends Personalita {
     
+    // Classe che eredita da Personalita
     public Zoltar () {
         super.messaggi = new String[] {
             "Ciao sono Zoltar, la personalita' default",

@@ -21,6 +21,7 @@ public class Client {
         this.output = output;
     }
     
+    // Creazione del Client e collegamento al Server
     public void utente() throws IOException {
         Socket socket = new Socket("localhost", 12345);
         DataInputStream in = new DataInputStream(socket.getInputStream());
@@ -31,10 +32,12 @@ public class Client {
         }
     }
 
+    // Scrittura dell'output nella textarea
     public void mostra(String testo) {
         output.append(testo + "\n" + "\n");
     }
     
+    // Invio del messaggio al server
     public void invia(String messaggio) {
         if (out == null) {
             return;

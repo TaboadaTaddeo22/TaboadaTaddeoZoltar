@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
  * @author tadde
  */
 public class FrameZoltar extends javax.swing.JFrame {
-    
+    // Attributo
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrameZoltar.class.getName());
     private javax.swing.Timer timerGif;
     private Server s;
@@ -32,12 +32,14 @@ public class FrameZoltar extends javax.swing.JFrame {
         modificaComboBox();
     }
     
+    // Modifiche della textArea (es. l'utente non può scriverci sopra)
     private void modificaTextArea() {
         txaZoltar.setEditable(false);
         txaZoltar.setLineWrap(true);
         txaZoltar.setWrapStyleWord(true);
     }
     
+    // Modifiche della comboBox (es. aggiunta delle personalità)
     private void modificaComboBox() {
         cmbPersonalita.addItem("Zoltar");
         cmbPersonalita.addItem("Eldego");
@@ -46,6 +48,7 @@ public class FrameZoltar extends javax.swing.JFrame {
         impostaImmagine(0);
     }
     
+    // Quando l'utente pone una domanda parte l'animazione gif relativa alla personalità scelta per 2,5 secondi
     private void animaImmagine() {
         ImageIcon immagine = null;
         switch (cmbPersonalita.getSelectedIndex()) {
@@ -78,6 +81,7 @@ public class FrameZoltar extends javax.swing.JFrame {
         timerGif.start();
     }
     
+    // Quando l'utente cambia personalità cambia l'immagine corrispettiva
     private void impostaImmagine(int indice) {
         ImageIcon immagine = null;
         switch (indice) {
@@ -104,6 +108,7 @@ public class FrameZoltar extends javax.swing.JFrame {
         lblImmagine.setIcon(new ImageIcon(ridimensionata));
     }
     
+    // Vengono fatti partire il server ed il client con dei thread
     public void iniziaZoltar() {
         new Thread(() -> {
             try {
@@ -273,17 +278,20 @@ public class FrameZoltar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Il click del bottone invia il messaggio al Server
     private void btnInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputActionPerformed
         gM.messaggioUtente(txtInput.getText());
         animaImmagine();
         txtInput.setText("");
     }//GEN-LAST:event_btnInputActionPerformed
 
+    // Il cambio dell'elemento selezionato nella comboBox sostituisce la personalità selezionata
     private void cmbPersonalitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPersonalitaActionPerformed
         gM.personalita((String) cmbPersonalita.getSelectedItem());
         impostaImmagine(cmbPersonalita.getSelectedIndex());
     }//GEN-LAST:event_cmbPersonalitaActionPerformed
 
+    // Il click del bottone mostra il messaggio d'aiuto
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
         gM.help();
     }//GEN-LAST:event_btnHelpActionPerformed

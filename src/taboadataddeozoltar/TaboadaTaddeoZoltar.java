@@ -17,6 +17,7 @@ public class TaboadaTaddeoZoltar {
      */
     public static void main(String[] args) {
         FrameZoltar frmZoltar = new FrameZoltar();
+        // Schermo intero
         frmZoltar.setExtendedState(MAXIMIZED_BOTH);
         frmZoltar.setVisible(true);
         frmZoltar.iniziaZoltar();

@@ -16,6 +16,7 @@ public class GestoreMessaggi {
         this.c = c;
     }
     
+    // Gestione del messaggio dell'utente
     public void inputUtente(String messaggio) {
         messaggio = messaggio.trim();
         if (messaggio.isEmpty()) {
@@ -44,11 +45,13 @@ public class GestoreMessaggi {
         }
     }
     
+    // Scrittura nella textarea dell'input dell'utente
     public void messaggioUtente(String messaggio) {
         c.mostra("Tu: " + messaggio);
         domanda(messaggio);
     }
     
+    // Cambiamento della personalità
     public void personalita(String nome) {
         if (nome.isEmpty()) {
             c.mostra("Specifica la personalita', ad esempio PER_Eldego");
@@ -57,6 +60,7 @@ public class GestoreMessaggi {
         c.invia("PER_" + nome);
     }
     
+    // Invio della domanda
     public void domanda(String testo) {
         if (testo.isEmpty()) {
             c.mostra("Scrivi la domanda, ad esempio 'Ciao, Come stai?'");
@@ -65,6 +69,7 @@ public class GestoreMessaggi {
         c.invia("DOM_" + testo);
     }
     
+    // Scrittura nella textarea del messaggio d'aiuto
     public void help() {
         c.mostra("Personalita' disponibili: \n"
                 + "Zoltar  : la personalita' di default\n"

@@ -10,6 +10,7 @@ package taboadataddeozoltar;
  */
 public class Sindaco extends Personalita {
     
+    // Classe che eredita da Personalita
     public Sindaco() {
         super.messaggi = new String[] {
             "Ciao sono il Sindaco di Malmo",

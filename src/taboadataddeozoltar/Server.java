@@ -13,9 +13,11 @@ import javax.swing.JTextArea;
  * @author taboada.taddeo
  */
 public class Server {
+    // Attributi
     private int porta = 12345;
     private ServerSocket server;
-    private Personalita personalita = new Zoltar();   // default
+    // Personalità default
+    private Personalita personalita = new Zoltar();   
     private JTextArea output;
     
     public Server(JTextArea output) {
@@ -34,6 +36,7 @@ public class Server {
         }).start();
     }
  
+    // Acccensione del Server e stabilimento connessione con il Client
     private void servi() throws IOException {
         Socket client = server.accept();
         DataInputStream in = new DataInputStream(client.getInputStream());
@@ -51,6 +54,7 @@ public class Server {
         }
     }
     
+    // Elaborazione del messaggio ricevuto dal Client
     private String elabora(String richiesta) {
         String[] parti = richiesta.split("_", 2);
         String comando = parti[0];
@@ -72,6 +76,7 @@ public class Server {
         }
     }
     
+    // Metodo usato in fase di test
     public void mostra(String testo) {
         output.append(testo + "\n");
     }

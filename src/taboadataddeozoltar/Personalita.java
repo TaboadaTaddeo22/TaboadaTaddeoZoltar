@@ -11,11 +11,14 @@ import java.util.Random;
  * @author tadde
  */
 public class Personalita {
+    // Attributi
+    // Ogni classe "figlia" ha i suoi messaggi personalizzati
     String[] messaggi;
 
     public Personalita() {
     }
 
+    // Metodo che restituisce un messaggio casuale
     public String risposta() {
         Random r = new Random();
         int n = r.nextInt(messaggi.length);

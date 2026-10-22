@@ -10,6 +10,7 @@ package taboadataddeozoltar;
  */
 public class Eldego extends Personalita {
 
+    // Classe che eredita da Personalita
     public Eldego() {
         super.messaggi = new String[] {
             "Ciao sono Eldego",
